@@ -324,7 +324,7 @@ void GazeboQuadrotorSimpleController::Update()
   // torque.x = inertia.x *  controllers_.roll.update(-velocity_command_.linear.y/gravity, euler.x, angular_velocity_body.x, dt);
   // torque.y = inertia.y *  controllers_.pitch.update(velocity_command_.linear.x/gravity, euler.y, angular_velocity_body.y, dt);
   torque.z = inertia.z *  controllers_.yaw.update(velocity_command_.angular.z * 1.66, angular_velocity.z, 0, dt);
-  force.z  = mass      * (controllers_.velocity_z.update(velocity_command_.linear.z,  velocity.z, acceleration.z, dt) + load_factor * gravity);
+  force.z  = mass      * (controllers_.velocity_z.update(velocity_command_.linear.z * 2.5,  velocity.z, acceleration.z, dt) + load_factor * gravity);
   if (max_force_ > 0.0 && force.z > max_force_) force.z = max_force_;
   if (force.z < 0.0) force.z = 0.0;
 
